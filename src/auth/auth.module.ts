@@ -1,24 +1,28 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
-    ClientsModule.registerAsync([
-      {
-        name: 'AUTH_SERVICE',
-        imports: [ConfigModule],
-        useFactory: (configService: ConfigService) => ({
-          transport: Transport.TCP,
-          options: {
-            host: configService.get<string>('AUTH_SERVICE_HOST', 'localhost'),
-            port: configService.get<number>('AUTH_SERVICE_PORT', 3001),
-          },
-        }),
-        inject: [ConfigService],
-      },
-    ]),
+    PassportModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: {
+          expiresIn: (configService.get<string>('JWT_EXPIRATION') || '15m') as
+            | number
+            | `${number}${'ms' | 's' | 'm' | 'h' | 'd'}`,
+        },
+      }),
+      inject: [ConfigService],
+    }),
+    ConfigModule,
   ],
-  exports: [ClientsModule],
+  providers: [JwtAuthGuard, JwtStrategy],
+  exports: [JwtAuthGuard],
 })
 export class AuthModule {}

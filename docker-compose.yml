@@ -6,14 +6,14 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - "${DB_PORT}:5432"
+      - '${DB_PORT}:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   app:
     build: .
     ports:
-      - "${APP_PORT}:3000"
+      - '${APP_PORT}:3000'
     depends_on:
       - db
     environment:
@@ -27,6 +27,7 @@ services:
       - APP_PORT=${APP_PORT}
       - ENABLE_SWAGGER=${ENABLE_SWAGGER}
       - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
 
 volumes:
   postgres_data:
