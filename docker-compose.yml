@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "${APP_PORT}:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - ENTITIES_GLOB=${ENTITIES_GLOB}
+      - SYNCHRONIZE=${SYNCHRONIZE}
+      - APP_PORT=${APP_PORT}
+      - ENABLE_SWAGGER=${ENABLE_SWAGGER}
+      - DATABASE_URL=${DATABASE_URL}
+
+volumes:
+  postgres_data:
