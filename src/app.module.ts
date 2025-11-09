@@ -8,6 +8,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module.js';
 import { JwtStrategy } from './auth/strategies/jwt.strategy.js';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { InboxModule } from './inbox/inbox.module';
+import { ActionsModule } from './actions/actions.module';
+import { InboxItem } from './entities/inbox-item.entity';
+import { Action } from './entities/action.entity';
+import { Project } from './entities/project.entity';
 
 @Module({
   imports: [
@@ -18,7 +23,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        const entities = [];
+        const entities = [InboxItem, Action, Project];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {
           return {
@@ -42,6 +47,8 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
       inject: [ConfigService],
     }),
     AuthModule,
+    InboxModule,
+    ActionsModule,
   ],
   controllers: [AppController],
   providers: [

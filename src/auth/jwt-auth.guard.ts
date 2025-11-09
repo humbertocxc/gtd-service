@@ -29,15 +29,14 @@ export class JwtAuthGuard implements CanActivate {
 
       const payload = verify(token, secret as Secret, {
         algorithms: ['HS256'],
-      }) as { sub?: string; email?: string; name?: string; role?: string };
+      }) as { sub?: string; name?: string; role?: string };
 
-      if (!payload.sub || !payload.email) {
+      if (!payload.sub || !payload.name || !payload.role) {
         throw new UnauthorizedException('Invalid token payload');
       }
 
       request.user = {
-        externalUserId: payload.sub,
-        email: payload.email,
+        id: payload.sub,
         name: payload.name,
         role: payload.role,
       };
@@ -51,10 +50,9 @@ export class JwtAuthGuard implements CanActivate {
 declare module 'express' {
   interface Request {
     user?: {
-      externalUserId?: string;
-      email?: string;
-      name?: string;
-      role?: string;
+      id: string;
+      name: string;
+      role: string;
     };
   }
 }
