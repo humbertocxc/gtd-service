@@ -25,6 +25,7 @@ import { RoutineItem } from '@routine/models/routine-item.entity';
 import { WeeklyRoutinePlan } from '@routine/models/weekly-routine-plan.entity';
 import { RoutinePlanEntry } from '@routine/models/routine-plan-entry.entity';
 import { DailyRoutineInstance } from '@routine/models/daily-routine-instance.entity';
+import { RoutineGTDConversionEvent } from '@routine/models/routine-gtd-conversion-event.entity';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { DailyRoutineInstance } from '@routine/models/daily-routine-instance.ent
           WeeklyRoutinePlan,
           RoutinePlanEntry,
           DailyRoutineInstance,
+          RoutineGTDConversionEvent,
         ];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {

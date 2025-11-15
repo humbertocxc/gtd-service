@@ -6,10 +6,12 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   ManyToOne,
+  OneToMany,
   JoinColumn,
   Index,
 } from 'typeorm';
 import { RoutineTemplate } from '@routine/models/routine-template.entity';
+import { RoutinePlanEntry } from '@routine/models/routine-plan-entry.entity';
 import { DayOfWeek } from '@routine/shared/enums/day-of-week.enum';
 import { TimeOfDay } from '@routine/shared/enums/time-of-day.enum';
 
@@ -61,4 +63,7 @@ export class RoutineItem {
   })
   @JoinColumn({ name: 'templateId' })
   template: RoutineTemplate;
+
+  @OneToMany(() => RoutinePlanEntry, entry => entry.routineItem)
+  planEntries: RoutinePlanEntry[];
 }

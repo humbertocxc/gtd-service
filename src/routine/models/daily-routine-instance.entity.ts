@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToOne,
   JoinColumn,
   Index,
 } from 'typeorm';
 import { RoutinePlanEntry } from '@routine/models/routine-plan-entry.entity';
+import { RoutineGTDConversionEvent } from '@routine/models/routine-gtd-conversion-event.entity';
 
 @Entity('daily_routine_instance')
 export class DailyRoutineInstance {
@@ -70,4 +72,7 @@ export class DailyRoutineInstance {
   })
   @JoinColumn({ name: 'planEntryId' })
   planEntry: RoutinePlanEntry;
+
+  @OneToOne(() => RoutineGTDConversionEvent, conversion => conversion.instance)
+  conversionEvent: RoutineGTDConversionEvent;
 }

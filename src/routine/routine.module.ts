@@ -3,6 +3,7 @@ import { RoutineTemplateModule } from '@routine/routine-template/routine-templat
 import { RoutineItemModule } from '@routine/routine-item/routine-item.module';
 import { RoutinePlanModule } from '@routine/routine-plan/routine-plan.module';
 import { RoutineInstanceModule } from '@routine/routine-instance/routine-instance.module';
+import { RoutineConversionModule } from '@routine/routine-conversion/routine-conversion.module';
 import { RoutineSchedulerModule } from '@routine/routine-scheduler/routine-scheduler.module';
 
 @Module({
@@ -11,6 +12,7 @@ import { RoutineSchedulerModule } from '@routine/routine-scheduler/routine-sched
     RoutineItemModule,
     RoutinePlanModule,
     RoutineInstanceModule,
+    RoutineConversionModule,
     RoutineSchedulerModule,
   ],
   exports: [
@@ -18,6 +20,7 @@ import { RoutineSchedulerModule } from '@routine/routine-scheduler/routine-sched
     RoutineItemModule,
     RoutinePlanModule,
     RoutineInstanceModule,
+    RoutineConversionModule,
     RoutineSchedulerModule,
   ],
 })
