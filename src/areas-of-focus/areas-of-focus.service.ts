@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AreaOfFocus } from '../entities/area-of-focus.entity';
+import { AreaOfFocus } from '../models/area-of-focus.entity';
 import { CreateAreaOfFocusDto } from './dto/create-area-of-focus.dto';
 import { UpdateAreaOfFocusDto } from './dto/update-area-of-focus.dto';
 

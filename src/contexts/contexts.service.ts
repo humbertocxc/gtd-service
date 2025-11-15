@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Context } from '../entities/context.entity';
+import { Context } from '../models/context.entity';
 import { CreateContextDto } from './dto/create-context.dto';
 import { UpdateContextDto } from './dto/update-context.dto';
 

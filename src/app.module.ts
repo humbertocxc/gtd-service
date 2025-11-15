@@ -12,12 +12,12 @@ import { InboxModule } from './inbox/inbox.module';
 import { ActionsModule } from './actions/actions.module';
 import { ContextsModule } from './contexts/contexts.module';
 import { AreasOfFocusModule } from './areas-of-focus/areas-of-focus.module';
-import { InboxItem } from './entities/inbox-item.entity';
-import { Action } from './entities/action.entity';
-import { Project } from './entities/project.entity';
-import { Context } from './entities/context.entity';
-import { AreaOfFocus } from './entities/area-of-focus.entity';
-import { ActivityLog } from './entities/activity-log.entity';
+import { InboxItem } from './models/inbox-item.entity';
+import { Action } from './models/action.entity';
+import { Project } from './models/project.entity';
+import { Context } from './models/context.entity';
+import { AreaOfFocus } from './models/area-of-focus.entity';
+import { ActivityLog } from './models/activity-log.entity';
 
 @Module({
   imports: [

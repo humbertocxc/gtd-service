@@ -1,6 +1,6 @@
 import { IsOptional, IsString, IsEnum, IsDateString } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { ActionStatus } from '../../entities/action-status.enum';
+import { ActionStatus } from '../../models/action-status.enum';
 
 export class FilterActionsDto {
   @ApiPropertyOptional({ enum: ActionStatus, description: 'Filter by status' })

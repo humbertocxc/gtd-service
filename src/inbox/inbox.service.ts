@@ -5,16 +5,16 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { InboxItem } from '../entities/inbox-item.entity';
-import { Action } from '../entities/action.entity';
-import { Project } from '../entities/project.entity';
-import { ActivityLog } from '../entities/activity-log.entity';
+import { InboxItem } from '../models/inbox-item.entity';
+import { Action } from '../models/action.entity';
+import { Project } from '../models/project.entity';
+import { ActivityLog } from '../models/activity-log.entity';
 import { CreateInboxItemDto } from './dto/create-inbox-item.dto';
 import {
   ConvertInboxItemDto,
   ConversionType,
 } from './dto/convert-inbox-item.dto';
-import { ActionStatus } from '../entities/action-status.enum';
+import { ActionStatus } from '../models/action-status.enum';
 
 @Injectable()
 export class InboxService {

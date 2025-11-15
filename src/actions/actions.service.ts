@@ -5,11 +5,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { Action } from '../entities/action.entity';
-import { InboxItem } from '../entities/inbox-item.entity';
-import { ActivityLog } from '../entities/activity-log.entity';
-import { Project } from '../entities/project.entity';
-import { ActionStatus } from '../entities/action-status.enum';
+import { Action } from '../models/action.entity';
+import { InboxItem } from '../models/inbox-item.entity';
+import { ActivityLog } from '../models/activity-log.entity';
+import { Project } from '../models/project.entity';
+import { ActionStatus } from '../models/action-status.enum';
 import { FilterActionsDto } from './dto/filter-actions.dto';
 
 @Injectable()
