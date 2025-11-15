@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ScheduleModule } from '@nestjs/schedule';
 import { APP_GUARD } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
 import { AppController } from './app.controller';
@@ -21,12 +22,16 @@ import { AreaOfFocus } from './models/area-of-focus.entity';
 import { ActivityLog } from './models/activity-log.entity';
 import { RoutineTemplate } from '@routine/models/routine-template.entity';
 import { RoutineItem } from '@routine/models/routine-item.entity';
+import { WeeklyRoutinePlan } from '@routine/models/weekly-routine-plan.entity';
+import { RoutinePlanEntry } from '@routine/models/routine-plan-entry.entity';
+import { DailyRoutineInstance } from '@routine/models/daily-routine-instance.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -40,6 +45,9 @@ import { RoutineItem } from '@routine/models/routine-item.entity';
           ActivityLog,
           RoutineTemplate,
           RoutineItem,
+          WeeklyRoutinePlan,
+          RoutinePlanEntry,
+          DailyRoutineInstance,
         ];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {
