@@ -1,3 +1,4 @@
+import { RoutineItem } from '@routine/models/routine-item.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
   Index,
 } from 'typeorm';
 
@@ -51,4 +53,7 @@ export class RoutineTemplate {
 
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deletedAt: Date | null;
+
+  @OneToMany(() => RoutineItem, item => item.template)
+  items: RoutineItem[];
 }

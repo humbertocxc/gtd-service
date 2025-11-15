@@ -20,6 +20,7 @@ import { Context } from './models/context.entity';
 import { AreaOfFocus } from './models/area-of-focus.entity';
 import { ActivityLog } from './models/activity-log.entity';
 import { RoutineTemplate } from '@routine/models/routine-template.entity';
+import { RoutineItem } from '@routine/models/routine-item.entity';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { RoutineTemplate } from '@routine/models/routine-template.entity';
           AreaOfFocus,
           ActivityLog,
           RoutineTemplate,
+          RoutineItem,
         ];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {
