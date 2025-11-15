@@ -12,12 +12,14 @@ import { InboxModule } from './inbox/inbox.module';
 import { ActionsModule } from './actions/actions.module';
 import { ContextsModule } from './contexts/contexts.module';
 import { AreasOfFocusModule } from './areas-of-focus/areas-of-focus.module';
+import { RoutineModule } from './routine/routine.module';
 import { InboxItem } from './models/inbox-item.entity';
 import { Action } from './models/action.entity';
 import { Project } from './models/project.entity';
 import { Context } from './models/context.entity';
 import { AreaOfFocus } from './models/area-of-focus.entity';
 import { ActivityLog } from './models/activity-log.entity';
+import { RoutineTemplate } from '@routine/models/routine-template.entity';
 
 @Module({
   imports: [
@@ -35,6 +37,7 @@ import { ActivityLog } from './models/activity-log.entity';
           Context,
           AreaOfFocus,
           ActivityLog,
+          RoutineTemplate,
         ];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {
@@ -63,6 +66,7 @@ import { ActivityLog } from './models/activity-log.entity';
     ActionsModule,
     ContextsModule,
     AreasOfFocusModule,
+    RoutineModule,
   ],
   controllers: [AppController],
   providers: [

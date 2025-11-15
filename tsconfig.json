@@ -27,7 +27,8 @@
       "@inbox/*": ["inbox/*"],
       "@actions/*": ["actions/*"],
       "@contexts/*": ["contexts/*"],
-      "@areas-of-focus/*": ["areas-of-focus/*"]
+      "@areas-of-focus/*": ["areas-of-focus/*"],
+      "@routine/*": ["routine/*"]
     }
   }
 }
