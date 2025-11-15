@@ -10,9 +10,14 @@ import { JwtStrategy } from './auth/strategies/jwt.strategy.js';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { InboxModule } from './inbox/inbox.module';
 import { ActionsModule } from './actions/actions.module';
+import { ContextsModule } from './contexts/contexts.module';
+import { AreasOfFocusModule } from './areas-of-focus/areas-of-focus.module';
 import { InboxItem } from './entities/inbox-item.entity';
 import { Action } from './entities/action.entity';
 import { Project } from './entities/project.entity';
+import { Context } from './entities/context.entity';
+import { AreaOfFocus } from './entities/area-of-focus.entity';
+import { ActivityLog } from './entities/activity-log.entity';
 
 @Module({
   imports: [
@@ -23,7 +28,14 @@ import { Project } from './entities/project.entity';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        const entities = [InboxItem, Action, Project];
+        const entities = [
+          InboxItem,
+          Action,
+          Project,
+          Context,
+          AreaOfFocus,
+          ActivityLog,
+        ];
         const databaseUrl = configService.get<string>('DATABASE_URL');
         if (databaseUrl) {
           return {
@@ -49,6 +61,8 @@ import { Project } from './entities/project.entity';
     AuthModule,
     InboxModule,
     ActionsModule,
+    ContextsModule,
+    AreasOfFocusModule,
   ],
   controllers: [AppController],
   providers: [
